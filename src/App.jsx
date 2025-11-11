@@ -5,18 +5,48 @@ import "./App.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import logo from "/images/logo.png";
 
-import g1 from "/images/g1.png";
-import g2 from "/images/g2.png";
-import g3 from "/images/g3.jpeg";
-import g4 from "/images/g4.jpeg";
-import g5 from "/images/g5.jpeg";
-import g6 from "/images/g6.jpeg";
+// services 
+// import service1 from "/images/service1.jpeg";
+// import service2 from "/images/service2.png";
+// import service3 from "/images/service3.jpg";
+// import service4 from "/images/service4.png";
+// import service5 from "/images/service5.jpg";
 
-import gv1 from "/videos/gv1.mp4";
-import gv2 from "/videos/gv2.mp4";
-import gv3 from "/videos/gv3.MP4";
-import gv4 from "/videos/gv4.mp4";
+// water fountains
+import fountain1 from "/images/fountain1.png";
+import fountain2 from "/images/fountain2.png";
+import fountain3 from "/images/fountain3.png";
+import fountain4 from "/images/fountain4.jpeg";
 
+import fountain11 from "/videos/fountain11.mov";
+import fountain22 from "/videos/fountain22.MOV";
+import fountain33 from "/videos/fountain33.MOV";
+import fountain44 from "/videos/fountain44.MP4"
+
+
+// sprinkler
+import sprinkler1 from "/images/sprinkler1.jpeg";
+import sprinkler2 from "/images/sprinker2.jpeg";
+import sprinkler3 from "/images/sprinkler3.jpeg";
+
+import sprinkler11 from "/videos/sprinkler11.mp4";
+import sprinkler22 from "/videos/sprinkler22.mp4";
+import sprinkler33 from "/videos/sprinkler33.mp4";
+import sprinkler44 from "/videos/sprinkler44.MOV"
+
+// solar panel
+import solar11 from "/videos/solar11.mp4"
+
+// drip irrigation 
+import drip from "/images/drip irrigation.jpeg";
+// swimming pools and ponds
+import swim11 from "/videos/swim11.MOV"
+import pool1 from "/images/pool1.jpg"
+import pool11 from "/videos/pool11.mp4"
+import pool22 from "/videos/pool22.mp4"
+
+
+//default
 import annal from "/videos/annal.mp4";
 import about from "/videos/about.mp4";
 
@@ -24,11 +54,53 @@ import about from "/videos/about.mp4";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [previewMedia, setPreviewMedia] = useState({ src: g1, type: "image" });
+  const [previewMedia, setPreviewMedia] = useState({ src: fountain1, type: "image" });
+  const [activeCategory, setActiveCategory] = useState("Water Fountains");
 
   const impactCardsRef = useRef(null);
 
-  
+  // ✅ Gallery data grouped by folder/category
+  const galleryData = {
+    "Water Fountains": [
+      { src: fountain22, type: "video", title: "Fountain Show" },
+      { src: fountain33, type: "video", title: "Fountain Show" },
+      { src: fountain3, type: "image", title: "Outdoor Fountain Display" },
+      { src: fountain44, type: "video", title: "Fountain Show" },
+      // { src: fountain1, type: "image", title: "Decorative Garden Fountain" },
+      { src: fountain4, type: "image", title: "Outdoor Fountain Display" },
+      { src: fountain11, type: "video", title: "Interior Fountain Show" },
+      { src: fountain2, type: "image", title: "Outdoor Fountain with light show" },
+    ],
+    "Water Sprinklers": [
+      // { src: sprinkler33, type: "video", title: "Automatics Lawn Sprinkler" },
+      { src: sprinkler22, type: "video", title: "Rotating Sprinkler" },
+      { src: sprinkler1, type: "image", title: "Garden Sprinkler System" },
+      { src: sprinkler11, type: "video", title: "Sprinkler System over the landscape" },
+      { src: sprinkler2, type: "image", title: "Farm Sprinkler Setup" },
+      { src: sprinkler33, type: "video", title: "Sprinkler System on garden" },
+      { src: sprinkler44, type: "video", title: "Sprinkler System on garden" },
+      { src: sprinkler3, type: "image", title: "Farm Sprinkler Setup" },
+    ],
+    "Solar Rooftop Panels": [
+      { src: solar11, type: "video", title: "Solar panel on rooftop" },
+    ],
+    "Drip Irrigation Systems": [
+      { src: drip, type: "image", title: "Drip irrigation system" },
+      // { src: g3, type: "image", title: "Drip Setup for Greenhouse" },
+    ],
+    "Swimming Pools & Ponds": [
+      { src: swim11, type: "video", title: "Interior Pool for home" },
+      { src: pool11, type: "video", title: "Swimming Pool for home" },
+      { src: pool1, type: "image", title: "Luxury Pool Design" },
+      { src: pool22, type: "video", title: "Swimming Pool for home" },
+    ],
+  };
+
+  // ✅ Automatically show first item in each category
+  useEffect(() => {
+    const firstItem = galleryData[activeCategory]?.[0];
+    if (firstItem) setPreviewMedia(firstItem);
+  }, [activeCategory]);
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -167,29 +239,29 @@ function App() {
             {
               title: "Automation in Irrigation",
               desc: "Reduces manpower and ensures efficient, hassle-free watering for your garden with advanced fog systems, drip irrigation, and automated sprinkler solutions.",
-              img: "/images/d1.jpeg",
+              img: "/images/service1.jpeg",
             },
             {
               title: "Water Fountains",
               desc: "Where art meets engineering — crafting elegant water fountains that bring style, serenity, and precision to homes, gardens, and commercial spaces.",
-              img: "/images/k1.png",
+              img: "/images/service2.png",
             },
          
             {
               title: "Swimming Pools",
               desc: "We craft pools that bring luxury, comfort, and lasting quality to your surroundings.",
-              img: "/images/f1.jpg",
+              img: "/images/service3.jpg",
             },
            
             {
               title: "Electrical Works",
               desc: "We specialize in High Tension (HT) and Transformer Centre (TC) installations, combining expertise with a commitment to quality and reliability.",
-              img: "/images/s2.png",
+              img: "/images/service4.png",
             },
             {
               title: "Rooftop Solar Panel",
               desc: "Harness the sun’s power with efficient solar rooftop panels for a cleaner, cost-saving energy future.",
-              img: "/images/s5.jpg",
+              img: "/images/service5.jpg",
             },
           ].map((service, i) => (
             <div
@@ -241,9 +313,91 @@ function App() {
           </div>
         </section>
 
+        {/* Gallery Section - Categorized by Project Type */}
+        <section className="gallery" id="Our Work" data-aos="fade-up">
+          <h2 className="gallery-heading">
+            Navigating <span>Our Masterpieces</span>
+          </h2>
+          <p className="gallery-subheading">
+            Explore Our Smart Irrigation, Water Fountain, Solar, and Pool Projects
+          </p>
+
+          {/* Category Tabs */}
+          <div className="gallery-categories">
+            {[
+              "Water Fountains",
+              "Water Sprinklers",
+              "Swimming Pools & Ponds",
+              "Drip Irrigation Systems",
+              "Solar Rooftop Panels",
+
+            ].map((category) => (
+              <button
+                key={category}
+                className={`category-btn ${
+                  activeCategory === category ? "active" : ""
+                }`}
+                onClick={() => setActiveCategory(category)}
+              >
+                {category}
+              </button>
+            ))}
+          </div>
+
+          <div className="gallery-container">
+            {/* Left: Main Preview */}
+            <div className="gallery-main">
+              {previewMedia?.type === "video" ? (
+                <video
+                  src={previewMedia.src}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="gallery-video"
+                />
+              ) : (
+                <img src={previewMedia?.src} alt="Preview" />
+              )}
+            </div>
+
+            {/* Right: Filtered Project Thumbnails */}
+            <div className="gallery-list">
+              {galleryData[activeCategory]?.map((item, i) => (
+                <div
+                  key={i}
+                  className={`gallery-list-item ${
+                    previewMedia?.src === item.src ? "active" : ""
+                  }`}
+                  onClick={() => setPreviewMedia(item)}
+                >
+                  {item.type === "video" ? (
+                    <video
+                      src={item.src}
+                      muted
+                      loop
+                      autoPlay
+                      playsInline
+                      className="thumb-video"
+                    />
+                  ) : (
+                    <img src={item.src} alt={item.title} />
+                  )}
+                  <div className="gallery-info">
+                    <h3>{item.title}</h3>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
 
-        {/* Gallery Section - Redesigned with Inline Preview (Images + Videos) */}
+
+
+        {/* Gallery Section - Redesigned with Inline Preview (Images + Videos)
+
+        
         <section className="gallery" id="Our Work" data-aos="fade-up">
           <h2 className="gallery-heading">
             Navigating <span>Our Masterpieces</span>
@@ -253,7 +407,6 @@ function App() {
           </p>
 
           <div className="gallery-container">
-            {/* Left side: Dynamic preview */}
             <div className="gallery-main">
               {previewMedia?.type === "video" ? (
                 <video
@@ -269,12 +422,11 @@ function App() {
               )}
             </div>
 
-            {/* Right side: Project list */}
             <div className="gallery-list">
               {[
                 { src: gv2, type: "video", title: "Sprinkler on Landscape" },
                 { src: g6, type: "image", title: "Water Sprinkler for Farms"},
-                { src: gv3, type: "video", title: "Water Fountain with Lights" },
+                { src: gv3, type: "video", title: "Water Fountain" },
                 { src: g1, type: "image", title: "Water Fountain" },
                 { src: g5, type: "image", title: "Water Sprinkler for Gardens"},
                 { src: g2, type: "image", title: "Water Fountain"},
@@ -308,11 +460,7 @@ function App() {
                     <img src={item.src} alt="Gallery" />
                   )}
 
-                  {/* {item.type === "video" ? (
-                    <video src={item.src} muted loop playsInline className="thumb-video" />
-                  ) : (
-                    <img src={item.src} alt="Gallery" />
-                  )} */}
+      
                   <div className="gallery-info">
                     <h3>{item.title}</h3>
                   </div>
@@ -320,7 +468,7 @@ function App() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
 
 
